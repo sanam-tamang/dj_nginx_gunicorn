@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +28,7 @@ SECRET_KEY = 'django-insecure-e9k!c4b3fyt@lz=jk9sow5*jt%+wsaaj2rn*aj1k&s04ib72b+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.254.169','https://dj-nginxandgunicorn.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1','https://dj-nginxandgunicorn.onrender.com']
 
 
 # Application definition
@@ -75,12 +78,8 @@ WSGI_APPLICATION = 'nginxtest.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'testdb',
-        'USER': 'rootuser',
-        'PASSWORD': 'rootpassword',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -126,5 +125,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import os
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
